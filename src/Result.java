@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 // Result class used to store the results of the search and facilitate printing
@@ -19,12 +21,7 @@ public class Result {
         return path;
     }
 
-    public void addToPath(int[] coordinates) {
-        path.add(coordinates);
-    }
+    // sort paths alphabetically
 
-    public void removeLast() {
-        path.remove(path.size() - 1);
-    }
 
 }

@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class WordSearcher {
-
     List<Result> results = new ArrayList<>();
 
     // Main method for the word search
@@ -13,8 +12,10 @@ public class WordSearcher {
         //add words to a set to avoid duplicates
         Set<String> wordSet = new HashSet<>(Arrays.asList(words));
 
+        List<int[]> result = new ArrayList<>();
         //build a prefix tree from the words
         PrefixTree tree = buildTree(wordSet);
+
 
         // apply a depth first search to every element in the board
         for (int i = 0; i < board.length; i++) {
@@ -22,13 +23,13 @@ public class WordSearcher {
                 if (tree.children.containsKey(board[i][j])) {
 
                     // Create a new array list to store the coordinates of the current search and add the first coordinate
-                    Result result = new Result("", new ArrayList<>());
-                    result.addToPath(new int[]{i, j});
+                    result.clear();
+                    result.add(new int[]{i, j});
                     depthFirstSearch(board, i, j, tree, result);
+
                 }
             }
         }
-
         return results;
     }
 
@@ -64,7 +65,7 @@ public class WordSearcher {
     }
 
     // Search the board for words using a prefix tree
-    public void depthFirstSearch(char[][] board, int i, int j, PrefixTree tree, Result result) {
+    public void depthFirstSearch(char[][] board, int i, int j, PrefixTree tree, List<int[]> result) {
         final int[][] directions = {
                 {0, 0},
                 {0, 1},
@@ -82,7 +83,7 @@ public class WordSearcher {
 
         // If the current node is a word, add it to the result
         if (current.word != null) {
-            results.add(new Result(current.word, new ArrayList<>(result.getPath())));
+           results.add(new Result(current.word, new ArrayList<>(result)));
         }
 
         // exit the current search if the coordinates are out of bounds or if the current letter is not in the tree
@@ -101,13 +102,14 @@ public class WordSearcher {
             }
 
             if (current.children.containsKey(board[newCoords[0]][newCoords[1]])) {
-                result.addToPath(new int[]{newCoords[0], newCoords[1]});
-                depthFirstSearch(board, newCoords[0], newCoords[1], current, result);
-                result.removeLast();
+            result.add(new int[]{newCoords[0], newCoords[1]});
+            depthFirstSearch(board, newCoords[0], newCoords[1], current, result);
+            result.remove(result.size() - 1);
 
             }
 
         }
+
     }
 }
 

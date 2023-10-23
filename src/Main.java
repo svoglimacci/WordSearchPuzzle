@@ -15,7 +15,6 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        long startTime = System.nanoTime();
 
         // Initializing the classes used in the program
         FileParser fp = new FileParser();
@@ -33,8 +32,6 @@ public class Main {
             sp.stringify(results, NbQuery);
 
         }
-long endTime = System.nanoTime();
-        System.out.println("That took " + (endTime - startTime) / 1000000.0 + " ms");
     }
 
 }
