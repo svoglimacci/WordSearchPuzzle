@@ -30,6 +30,7 @@ public class FileParser {
                 String[] words = br.readLine().split(" ");
                 queries.add(new Query<>(board, words));
             }
+
         } catch (IOException e) {
             e.printStackTrace();
             throw e;

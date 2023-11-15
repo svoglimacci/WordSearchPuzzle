@@ -5,7 +5,7 @@ import java.util.List;
 // Method used to print the results in the required format "word (x1,y1)->...->(xi,yi)"
 public class StringPrinter {
 
-    public void stringify(List<Result> array, int queryNb) {
+    public String stringify(List<Result> array, int queryNb) {
 
         // append each word and its path to a string, format it and add it to an array
         String[] stringArray = new String[array.size()];
@@ -28,12 +28,12 @@ public class StringPrinter {
         // sort the array alphabetically
         Arrays.sort(stringArray, Comparator.comparing(String::toString));
 
-        // print the query number and the results
-        System.out.println("Query " + queryNb);
+        //add the queries to a single string
+        StringBuilder sb = new StringBuilder();
+        sb.append("Query ").append(queryNb).append(":\n");
         for (String s : stringArray) {
-            System.out.println(s);
+            sb.append(s).append("\n");
         }
-
-
+        return sb.toString();
     }
 }

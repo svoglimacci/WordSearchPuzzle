@@ -15,7 +15,6 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-
         // Initializing the classes used in the program
         FileParser fp = new FileParser();
         WordSearcher ws = new WordSearcher();
@@ -29,9 +28,8 @@ public class Main {
         for (Query<char[][], String[]> data : parsing) {
             List<Result> results = ws.solve(data.getBoard(), data.getWords());
             NbQuery++;
-            sp.stringify(results, NbQuery);
-
+            System.out.print(sp.stringify(results, NbQuery));
         }
-    }
 
+    }
 }

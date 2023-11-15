@@ -1,5 +1,3 @@
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 // Result class used to store the results of the search and facilitate printing
@@ -20,8 +18,4 @@ public class Result {
     public List<int[]> getPath() {
         return path;
     }
-
-    // sort paths alphabetically
-
-
 }
